@@ -31,13 +31,12 @@ void bfs(int k) {
     }
 }
 int connectedGraph() {
+    memset(visited, false, sizeof(visited));
     int cnt = 0;
     for(int i = 1; i <= n; i++) {
         if(!visited[i]) {
-            cnt++;
-            cout << "Thanh phan lien thong thu " << cnt << ": ";
             bfs(i);
-            cout << endl;
+            cnt++;
         }
     }
     return cnt;
