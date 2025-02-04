@@ -68,8 +68,7 @@ void popBack(node **head) {
     if(*head == nullptr) return;
     if(temp->next == nullptr) {
         *head = nullptr;
-        delete temp;
-        return;
+        delete temp; return;
     }
     while(temp->next->next != nullptr) {
         temp = temp->next;
@@ -80,15 +79,15 @@ void popBack(node **head) {
 }
 void popNode(node **head, int k) {
     node *temp = *head;
-    int size = countNode(*head);
-    if(k < size || k > size + 1) return;
-    if(*head == nullptr) return;
+    int n = countNode(*head);
+    if(k < 1 || k > n + 1) return;
+    if(*head == nullptr)  return;
     for(int i = 1; i <= k - 2; i++) {
         temp = temp->next;
     }
-    node *other = temp->next;
-    temp->next = other->next;
-    delete other;
+    node *elm = temp->next;
+    temp->next = elm->next;
+    delete elm;
 }
 void menu() {
     cout << endl << "------------------------------" << endl;
