@@ -1,3 +1,8 @@
+/*
+8
+3 8 1 4 7 2 9 5
+2 4 3
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int main() {
@@ -5,13 +10,6 @@ int main() {
     cin.tie(nullptr);
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
-    int n; cin >> n;
-    for(int i = 2; i <= sqrt(n); i++) {
-        while(n % i == 0) {
-            n /= i;
-            cout << i << " ";
-        }
-    }
-    if(n != 1) cout << n << " ";
+    // Code
     return 0;
 }
