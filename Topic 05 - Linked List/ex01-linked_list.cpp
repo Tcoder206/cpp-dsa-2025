@@ -5,12 +5,6 @@ struct Node{
     Node* next;
 };
 typedef struct Node node;
-node *makeNode(int x) {
-    node *newNode = new Node();
-    newNode->data = x;
-    newNode->next = nullptr;
-    return newNode;
-}
 void duyetNode(node *head) {
     while(head != nullptr) {
         cout << head->data << " ";
@@ -25,6 +19,12 @@ int countNode(node *head) {
     }
     return cnt;
 }
+node *makeNode(int x) {
+    node *newNode = new Node();
+    newNode->data = x;
+    newNode->next = nullptr;
+    return newNode;
+}
 void pushFront(node **head, int x) {
     node *newNode = makeNode(x);
     newNode->next = *head;
@@ -32,21 +32,21 @@ void pushFront(node **head, int x) {
 }
 void pushBack(node **head, int x) {
     node *newNode = makeNode(x);
+    node *temp = *head;
     if(*head == nullptr){
         *head = newNode;
         return;
     }
-    node *temp = *head;
     while(temp->next != nullptr) {
         temp = temp->next;
     }
     temp->next = newNode;
 }
 void insert(node **head, int x, int k) {
+    node *newNode = makeNode(x);
     int n = countNode(*head);
     if(k < 1 || k > n + 1) return;
-    node *newNode = makeNode(x);
-    if(k == 1){
+    if(k == 1) {
         pushFront(head, x);
         return;
     }
@@ -67,20 +67,25 @@ void popBack(node **head) {
     node *temp = *head;
     if(*head == nullptr) return;
     if(temp->next == nullptr) {
-        *head = nullptr; delete temp; return;
+        *head = nullptr;
+        delete temp; return;
     }
     while(temp->next->next != nullptr) {
         temp = temp->next;
     }
     node *last = temp->next;
-    temp->next = nullptr;
+    last->next = nullptr;
     delete last;
 }
 void popNode(node **head, int k) {
-    node *temp = *head;
-    if(*head == nullptr) return;
     int n = countNode(*head);
-    if(k <= 1 || k > n + 1) return;
+    if(k < 1 || k > n + 1) return;
+    if(*head == nullptr) return;
+    node *temp = *head;
+    if(k == 1) {
+        popFront(head);
+        return;
+    }
     for(int i = 1; i <= k - 2; i++) {
         temp = temp->next;
     }
