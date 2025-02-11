@@ -16,11 +16,12 @@ int main() {
                 dp[i][j] = 0;
             } else {
                 dp[i][j] = dp[i - 1][j];
-                if(j > w[i - 1]) {
-                    dp[i][j] = max(dp[i][j], dp[i - 1][j - w[i]] + v[i]);
+                if(j >= w[i - 1]) {
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - w[i - 1]] + v[i - 1]);
                 }
             }
         }
     }
+    cout << dp[n][m] << endl;
     return 0;
 }
