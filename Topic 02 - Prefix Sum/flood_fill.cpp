@@ -25,7 +25,8 @@ int main() {
         for(int j = 0; j < m; j++) {
             bool check = true;
             for(int k = 0; k < 8; k++) {
-                int di = i + dx[k], dj = j + dy[k];
+                int di = dx[k] + i;
+                int dj = dy[k] + j;
                 if(di >= 0 && di < n && dj >= 0 && dj < m) {
                     if(a[di][dj] >= a[i][j]) {
                         check = false;

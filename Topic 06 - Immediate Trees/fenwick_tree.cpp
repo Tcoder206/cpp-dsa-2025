@@ -8,7 +8,7 @@ void update(int pos, int val) {
 }
 int query(int pos) {
     int sum = 0;
-    for(; pos >= 1; pos -= pos & -pos) {
+    for(; pos >= 0; pos -= pos & -pos) {
         sum += bit[pos];
     }
     return sum;

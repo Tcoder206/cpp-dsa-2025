@@ -44,15 +44,15 @@ void krusal() {
     int d = 0;
     sort(canh.begin(), canh.end(), cmp);
     for(int i = 0; i < m; i++) {
-        if(mst.size() == n - 1) break;
         edge e = canh[i];
+        if(mst.size() == n - 1) return;
         if(dsu(e.u, e.v)) {
             mst.push_back(e);
             d += e.w;
         }
     }
-    if(mst.size() != n - 1){
-        cout << "Ko co MST" << endl;
+    if(mst.size() != n - 1) {
+        cout << "Ko co mst" << endl;
     } else {
         cout << "MST: " << d << endl;
         for(auto it : mst) {
