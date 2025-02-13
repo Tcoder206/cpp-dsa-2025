@@ -1,10 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
-struct Node{
+struct Node {
     int data;
-    Node* next;
+    Node *next;
 };
 typedef struct Node node;
+node *makeNode(int x) {
+    node *newNode = new Node();
+    newNode->data = x;
+    newNode->next = nullptr;
+    return newNode;
+}
 void duyetNode(node *head) {
     while(head != nullptr) {
         cout << head->data << " ";
@@ -19,12 +25,6 @@ int countNode(node *head) {
     }
     return cnt;
 }
-node *makeNode(int x) {
-    node *newNode = new Node();
-    newNode->data = x;
-    newNode->next = nullptr;
-    return newNode;
-}
 void pushFront(node **head, int x) {
     node *newNode = makeNode(x);
     newNode->next = *head;
@@ -32,11 +32,11 @@ void pushFront(node **head, int x) {
 }
 void pushBack(node **head, int x) {
     node *newNode = makeNode(x);
-    node *temp = *head;
-    if(*head == nullptr){
+    if(*head == nullptr) {
         *head = newNode;
         return;
     }
+    node *temp = *head;
     while(temp->next != nullptr) {
         temp = temp->next;
     }
@@ -51,7 +51,7 @@ void insert(node **head, int x, int k) {
         return;
     }
     node *temp = *head;
-    for(int i = 1; i <= k - 2; i++) {
+    for(int i = 1; i < k - 2; i++) {
         temp = temp->next;
     }
     newNode->next = temp->next;
@@ -67,26 +67,25 @@ void popBack(node **head) {
     node *temp = *head;
     if(*head == nullptr) return;
     if(temp->next == nullptr) {
-        *head = nullptr;
+        (*head)->next = nullptr;
         delete temp; return;
     }
     while(temp->next->next != nullptr) {
         temp = temp->next;
     }
     node *last = temp->next;
-    last->next = nullptr;
+    temp->next = nullptr;
     delete last;
 }
 void popNode(node **head, int k) {
     int n = countNode(*head);
     if(k < 1 || k > n + 1) return;
-    if(*head == nullptr) return;
-    node *temp = *head;
     if(k == 1) {
         popFront(head);
         return;
     }
-    for(int i = 1; i <= k - 2; i++) {
+    node *temp = *head;
+    for(int i = 1; i < k + 2; i++) {
         temp = temp->next;
     }
     node *last = temp->next;

@@ -18,18 +18,17 @@ using namespace std;
 bool visited[100];
 vector<vector<int>> arr;
 void bfs(int k) {
-    memset(visited, false, sizeof(visited));
-    queue<int> temp;
-    temp.push(k);
+    queue<int> q;
+    q.push(k);
     visited[k] = true;
-    while(!temp.empty()) {
-        int top = temp.front();
+    while(!q.empty()) {
+        int top = q.front();
+        q.pop();
         cout << top << " ";
-        temp.pop();
         for(int u : arr[top]) {
             if(!visited[u]) {
                 visited[u] = true;
-                temp.push(u);
+                q.push(u);
             }
         }
     }

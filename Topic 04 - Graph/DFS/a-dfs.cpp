@@ -16,10 +16,10 @@ using namespace std;
 bool visited[100];
 vector<vector<int>> arr;
 void dfs(int k) {
-    cout << k << " ";
     visited[k] = true;
-    for(int x : arr[k]) {
-        if(!visited[x]) dfs(x);
+    cout << k << " ";
+    for(int u : arr[k]) {
+        if(!visited[u]) dfs(u);
     }
 }
 int main() {
