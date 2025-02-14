@@ -9,25 +9,31 @@ void init() {
     }
 }
 void sinh() {
-    int j = n;
-    while(j >= 0 && a[j] == 1) {
-        a[j--] = 0;
+    int i = n;
+    while(i > 0 && a[i] == 1) {
+        a[i--] = 0;
     }
-    if(j == 0) {
+    if(i == 0) {
         isFinal = 1;
     } else {
-        a[j] = 1;
+        a[i] = 1;
     }
 }
 int main() {
+    #ifndef ONLINE_JUDGE
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    freopen("TEST.INP", "r", stdin);
+    freopen("TEST.OUT", "w", stdout);
+    #endif
     cin >> n;
     init();
-    while(!isFinal){
+    do {
         for(int i = 1; i <= n; i++) {
-            cout << a[i];
+            cout << a[i] << " ";
         }
         cout << endl;
         sinh();
-    }
+    } while(!isFinal);
     return 0;
 }

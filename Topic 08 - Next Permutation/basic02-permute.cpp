@@ -8,7 +8,7 @@ void init() {
 }
 void sinh() {
     int i = n - 1;
-    while(i > 0 && a[i] > a[i + 1]){
+    while(i > 0 && a[i] >= a[i + 1]) {
         i--;
     }
     if(i == 0) {
@@ -25,7 +25,7 @@ int main() {
     init();
     while(!isFinal) {
         for(int i = 1; i <= n; i++) {
-            cout << a[i];
+            cout << a[i] << " ";
         }
         cout << endl;
         sinh();
