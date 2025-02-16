@@ -19,9 +19,9 @@ void make_set() {
         sz[i] = 1;
     }
 }
-int find(int v) {
-    if(v == parent[v]) return v;
-    return parent[v] = find(parent[v]);
+int find(int u) {
+    if(u == parent[u]) return u;
+    return parent[u] = find(parent[u]);
 }
 bool dsu(int a, int b) {
     a = find(a), b = find(b);
@@ -31,7 +31,7 @@ bool dsu(int a, int b) {
     sz[a] += sz[b];
     return true;
 }
-struct edge{
+struct edge {
     int u, v;
     int w;
 };
@@ -44,8 +44,8 @@ void krusal() {
     int d = 0;
     sort(canh.begin(), canh.end(), cmp);
     for(int i = 0; i < m; i++) {
+        if(mst.size() == n - 1) break;
         edge e = canh[i];
-        if(mst.size() == n - 1) return;
         if(dsu(e.u, e.v)) {
             mst.push_back(e);
             d += e.w;

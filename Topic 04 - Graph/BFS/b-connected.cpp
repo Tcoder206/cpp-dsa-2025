@@ -15,28 +15,29 @@ bool visited[100];
 vector<vector<int>> arr;
 int n, m;
 void bfs(int k) {
-    queue<int> temp;
-    temp.push(k);
+    queue<int> q;
     visited[k] = true;
-    while(!temp.empty()) {
-        int top = temp.front();
-        temp.pop();
+    q.push(k);
+    while(!q.empty()) {
+        int top = q.front();
+        q.pop();
         cout << top << " ";
         for(int u : arr[top]) {
             if(!visited[u]) {
-                temp.push(u);
                 visited[u] = true;
+                q.push(u);
             }
         }
     }
 }
 int connectedGraph() {
-    memset(visited, false, sizeof(visited));
     int cnt = 0;
     for(int i = 1; i <= n; i++) {
         if(!visited[i]) {
-            bfs(i);
             cnt++;
+            cout << "Thanh phan lien thong so " << cnt << " :\n";
+            bfs(i);
+            cout << endl;
         }
     }
     return cnt;

@@ -26,10 +26,12 @@ bool bfs(int k) {
         temp.pop();
         for(int u : arr[top]) {
             if(!visited[u]) {
-                temp.push(u);
-                parent[u] = top;
                 visited[u] = true;
-            } else if(u != parent[top]) return true;
+                parent[u] = top;
+                temp.push(u);
+            } else if(u != parent[top]) {
+                return true;
+            }
         }
     }
     return false;
@@ -42,7 +44,6 @@ int main() {
         arr[x].push_back(y);
         arr[y].push_back(x);
     }
-    bool cycle = bfs(1);
-    cout << boolalpha << cycle << endl;
+    cout << boolalpha << bfs(1) << endl;
     return 0;
 }

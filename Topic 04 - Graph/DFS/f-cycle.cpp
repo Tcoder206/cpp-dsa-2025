@@ -11,12 +11,13 @@
 using namespace std;
 bool visited[100];
 vector<vector<int>> arr;
-bool dfs(int k, int par) {
-    visited[k] = true;
-    for(int u : arr[k]) {
-        if(!visited[u]) {
-            if(dfs(u, k)) return true;
-        } else if(u != par) return true;
+bool dfs(int u, int parent) {
+    visited[u] = true;
+    cout << u << " ";
+    for(int k : arr[u]) {
+        if(!visited[k]) {
+            if(dfs(k, u)) return true;
+        } else if(k != parent) return true;
     }
     return false;
 }

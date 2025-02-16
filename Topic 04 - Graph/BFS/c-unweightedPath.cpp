@@ -5,31 +5,38 @@ int parent[100];
 vector<vector<int>> arr;
 int n, m;
 void bfs(int k) {
-    queue<int> temp;
-    temp.push(k);
+    queue<int> q;
+    q.push(k);
     visited[k] = true;
-    while(!temp.empty()) {
-        int top = temp.front();
-        temp.pop();
+    while(!q.empty()) {
+        int top = q.front();
+        q.pop();
         for(int u : arr[top]) {
             if(!visited[u]) {
-                temp.push(u);
-                parent[u] = top;
                 visited[u] = true;
+                parent[u] = top;
+                q.push(u);
             }
         }
     }
 }
-void unweightedPath(int s, int t) {
+void unweightPath(int s, int t) {
+    memset(visited, false, sizeof(visited));
     bfs(s);
-    vector<int> upath;
+    if(!visited[t]) {
+        cout << "Do thi ko co duong di" << endl;
+        return;
+    }
+    vector<int> path;
     while(t != s) {
-        upath.push_back(t);
+        path.push_back(t);
         t = parent[t];
     }
-    upath.push_back(s);
-    reverse(upath.begin(), upath.end());
-    for(int x : upath) cout << x << " ";
+    path.push_back(s);
+    reverse(path.begin(), path.end());
+    for(int i : path) {
+        cout << i << " ";
+    }
 }
 int main() {
     cin >> n >> m;
@@ -41,6 +48,6 @@ int main() {
         arr[y].push_back(x);
     }
     int s, t; cin >> s >> t;
-    unweightedPath(s, t);
+    unweightPath(s, t);
     return 0;
 }
