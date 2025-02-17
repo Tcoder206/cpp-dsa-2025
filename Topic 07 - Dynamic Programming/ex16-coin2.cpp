@@ -9,13 +9,10 @@ int main() {
     int c[n];
     vector<int> dp(x + 1, 0);
     dp[0] = 1;
-    int MOD = 1e9 + 7;
     for(int i = 0; i < n; i++) cin >> c[i];
     for(int i = 1; i <= x; i++) {
-        for(int j = 0; j < n; j++) {
-            if(i >= c[j]) {
-                dp[i] = (dp[i] + dp[i - c[j]]) % MOD;
-            }
+        for(int j = 1; j <= n; j++) {
+            if(i >= c[j - 1]) dp[i] += dp[i - c[j - 1]];
         }
     }
     cout << dp[x] << endl;

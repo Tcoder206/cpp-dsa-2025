@@ -11,9 +11,11 @@ int main() {
     dp[0] = 1;
     int MOD = 1e9 + 7;
     for(int i = 0; i < n; i++) cin >> c[i];
-    for(int i = 0; i < n; i++) {
-        for(int j = c[i]; j <= x; j++) {
-            dp[j] = (dp[j] + dp[j - c[i]]) % MOD;
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= x; j++) {
+            if(j >= c[i - 1]) {
+                dp[j] = (dp[j] + dp[j - c[i - 1]]) % MOD;
+            }
         }
     }
     cout << dp[x] << endl;
