@@ -37,14 +37,14 @@ struct edge {
 };
 vector<edge> canh;
 bool cmp(edge a, edge b) {
-    return (a.w < b.w);
+    return a.w < b.w;
 }
 void krusal() {
     vector<edge> mst;
     int d = 0;
     sort(canh.begin(), canh.end(), cmp);
     for(int i = 0; i < m; i++) {
-        if(mst.size() == n - 1) break;
+        if(mst.size() == n - 1) return;
         edge e = canh[i];
         if(dsu(e.u, e.v)) {
             mst.push_back(e);
@@ -52,11 +52,11 @@ void krusal() {
         }
     }
     if(mst.size() != n - 1) {
-        cout << "Ko co mst" << endl;
+        cout << "Ko co do thi lien thong" << endl;
     } else {
         cout << "MST: " << d << endl;
-        for(auto it : mst) {
-            cout << it.u << " " << it.v << " " << it.w << endl;
+        for(auto x : mst) {
+            cout << x.u << " " << x.v << " " << x.w << endl;
         }
     }
 }

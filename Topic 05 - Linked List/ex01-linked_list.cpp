@@ -13,7 +13,7 @@ node *makeNode(int x) {
 }
 void duyetNode(node *head) {
     while(head != nullptr) {
-        cout << head->data << " ";
+        cout << head->data << endl;
         head = head->next;
     }
 }
@@ -43,15 +43,15 @@ void pushBack(node **head, int x) {
     temp->next = newNode;
 }
 void insert(node **head, int x, int k) {
-    node *newNode = makeNode(x);
     int n = countNode(*head);
     if(k < 1 || k > n + 1) return;
+    node *newNode = makeNode(x);
     if(k == 1) {
         pushFront(head, x);
         return;
     }
     node *temp = *head;
-    for(int i = 1; i < k - 2; i++) {
+    for(int i = 1; i <= k - 2; i++) {
         temp = temp->next;
     }
     newNode->next = temp->next;
@@ -67,8 +67,9 @@ void popBack(node **head) {
     node *temp = *head;
     if(*head == nullptr) return;
     if(temp->next == nullptr) {
-        (*head)->next = nullptr;
-        delete temp; return;
+        *head = nullptr;
+        delete temp;
+        return;
     }
     while(temp->next->next != nullptr) {
         temp = temp->next;
@@ -85,7 +86,7 @@ void popNode(node **head, int k) {
         return;
     }
     node *temp = *head;
-    for(int i = 1; i < k + 2; i++) {
+    for(int i = 1; i <= k - 2; i++) {
         temp = temp->next;
     }
     node *last = temp->next;

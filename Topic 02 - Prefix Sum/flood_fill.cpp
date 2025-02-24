@@ -23,18 +23,18 @@ int main() {
     int cnt = 0;
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
-            bool check = true;
+            bool isValid = true;
             for(int k = 0; k < 8; k++) {
-                int di = dx[k] + i;
-                int dj = dy[k] + j;
-                if(di >= 0 && di < n && dj >= 0 && dj < m) {
+                int di = i + dx[k];
+                int dj = j + dy[k];
+                if(di >= 0 && dj >= 0 && di < n && dj < m) {
                     if(a[di][dj] >= a[i][j]) {
-                        check = false;
+                        isValid = false;
                         break;
                     }
                 }
             }
-            if(check) cnt++;
+            if(isValid) cnt++;
         }
     }
     cout << cnt << endl;
