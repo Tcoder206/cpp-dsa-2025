@@ -4,12 +4,12 @@
 using namespace std;
 int n, a[100], isFinal = 0;
 void init() {
-    for(int i = 1; i <= n; i++) {
+    for(int i = 0; i < n; i++) {
         a[i] = 0;
     }
 }
 void sinh() {
-    int i = n;
+    int i = n - 1;
     while(i > 0 && a[i] == 1) {
         a[i--] = 0;
     }
@@ -28,12 +28,12 @@ int main() {
     #endif
     cin >> n;
     init();
-    do {
-        for(int i = 1; i <= n; i++) {
-            cout << a[i] << " ";
+    while(!isFinal) {
+        for(int i = 0; i < n; i++) {
+            cout << a[i];
         }
         cout << endl;
         sinh();
-    } while(!isFinal);
+    }
     return 0;
 }

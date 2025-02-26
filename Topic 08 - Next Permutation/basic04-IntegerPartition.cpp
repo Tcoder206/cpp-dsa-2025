@@ -7,7 +7,7 @@ void init() {
 }
 void sinh() {
     int i = cnt;
-    while(i > 0 && a[i] == 1) i--;
+    while(i >= 1 && a[i] == 1) i--;
     if(i == 0) {
         isFinal = 1;
     } else {
