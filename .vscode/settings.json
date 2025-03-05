@@ -68,6 +68,19 @@
     "string": "cpp",
     "unordered_map": "cpp",
     "unordered_set": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "any": "cpp",
+    "array": "cpp",
+    "charconv": "cpp",
+    "compare": "cpp",
+    "functional": "cpp",
+    "ranges": "cpp",
+    "ratio": "cpp",
+    "scoped_allocator": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "variant": "cpp",
+    "random": "cpp"
   }
 }

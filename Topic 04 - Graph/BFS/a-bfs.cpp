@@ -34,13 +34,13 @@ void bfs(int k) {
     }
 }
 int main() {
-    int n, m; cin >> n >> m;
+    int n, m, s; cin >> n >> m >> s;
     arr.resize(n + 1);
     for(int i = 0; i < m; i++) {
         int x, y; cin >> x >> y;
         arr[x].push_back(y);
         arr[y].push_back(x);
     }
-    bfs(1);
+    bfs(s);
     return 0;
 }

@@ -7,15 +7,17 @@ void init() {
 }
 void sinh() {
     int i = cnt;
-    while(i >= 1 && a[i] == 1) i--;
+    while(i > 0 && a[i] == 1) {
+        i--;
+    }
     if(i == 0) {
         isFinal = 1;
     } else {
         a[i]--;
         int skip = cnt - i + 1;
         cnt = i;
-        int q = skip / a[i];
-        int r = skip % a[i];
+        int q = skip/a[i];
+        int r = skip%a[i];
         if(q) {
             for(int j = 1; j <= q; j++) {
                 a[++cnt] = a[i];

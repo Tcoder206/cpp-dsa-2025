@@ -1,17 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, bit[1000000], a[1000000];
-void update(int pos, int val) {
-    for(; pos <= n; pos += pos & -pos) {
+int update(int pos, int val) {
+    for(; pos < n; pos += pos & -pos) {
         bit[pos] += val;
     }
 }
 int query(int pos) {
     int sum = 0;
-    for(; pos >= 0; pos -= pos & -pos) {
+    for(; pos > 0; pos -= pos & -pos) {
         sum += bit[pos];
     }
-    return sum;
 }
 int main() {
     ios_base::sync_with_stdio(false);
@@ -24,10 +23,10 @@ int main() {
         update(i, a[i]);
     }
     while(m--) {
-        int q, x, y; cin >> q >> x >> y;
+        int x, y, q;
         if(q == 1) {
             update(x, y);
-        } else {
+        } else if(q == 2) {
             cout << query(y) - query(x - 1) << endl;
         }
     }
