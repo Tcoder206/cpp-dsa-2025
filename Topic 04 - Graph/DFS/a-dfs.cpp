@@ -19,7 +19,9 @@ void dfs(int k) {
     visited[k] = true;
     cout << k << " ";
     for(int u : arr[k]) {
-        if(!visited[u]) dfs(u);
+        if(!visited[u]) {
+            dfs(u);
+        }
     }
 }
 int main() {

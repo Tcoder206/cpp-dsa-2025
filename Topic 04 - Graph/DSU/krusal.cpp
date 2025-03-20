@@ -31,32 +31,33 @@ bool dsu(int a, int b) {
     sz[a] += sz[b];
     return true;
 }
-struct edge {
+struct edge{
     int u, v;
     int w;
 };
-vector<edge> canh;
 bool cmp(edge a, edge b) {
     return a.w < b.w;
 }
+vector<edge> canh;
 void krusal() {
     vector<edge> mst;
     int d = 0;
     sort(canh.begin(), canh.end(), cmp);
     for(int i = 0; i < m; i++) {
-        if(mst.size() == n - 1) return;
-        edge e = canh[i];
-        if(dsu(e.u, e.v)) {
-            mst.push_back(e);
-            d += e.w;
+        if(mst.size() != n - 1) {
+            edge e = canh[i];
+            if(dsu(e.u, e.v)) {
+                mst.push_back({e.u, e.v});
+                d += e.w;
+            }
         }
     }
     if(mst.size() != n - 1) {
-        cout << "Ko co do thi lien thong" << endl;
+        cout << "Do thi ko co mst" << endl;
     } else {
         cout << "MST: " << d << endl;
-        for(auto x : mst) {
-            cout << x.u << " " << x.v << " " << x.w << endl;
+        for(auto k : mst) {
+            cout << k.u << " " << k.v << " " << k.w << endl;
         }
     }
 }
@@ -67,7 +68,7 @@ int main() {
     freopen("TEST.OUT", "w", stdout);
     cin >> n >> m;
     for(int i = 0; i < m; i++) {
-        int x, y, z; cin >> x >> y >> z;
+        int x, y, z ; cin >> x >> y >> z;
         edge e = edge{x, y, z};
         canh.push_back(e);
     }

@@ -27,8 +27,8 @@ void bfs(int k) {
         cout << top << " ";
         for(int u : arr[top]) {
             if(!visited[u]) {
-                visited[u] = true;
                 q.push(u);
+                visited[u] = true;
             }
         }
     }
