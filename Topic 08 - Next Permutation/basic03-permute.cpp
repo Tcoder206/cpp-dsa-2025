@@ -8,14 +8,14 @@ void init() {
 }
 void sinh() {
     int i = n - 1;
-    while(i > 0 && a[i] >= a[i + 1]) {
+    while(i > 0 && a[i] > a[i + 1]) {
         i--;
     }
     if(i == 0) {
         isFinal = 1;
     } else {
         int j = n;
-        while(a[i] >= a[j]) j--;
+        while(a[i] > a[j]) j--;
         swap(a[i], a[j]);
         reverse(a + i + 1, a + n + 1);
     }
@@ -27,11 +27,10 @@ int main() {
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
     #endif
-    cin >> n;
     init();
     while(!isFinal) {
         for(int i = 1; i <= n; i++) {
-            cout << a[i];
+            cout << a[i] << " ";
         }
         cout << endl;
         sinh();

@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-int n, k, a[100], isFinal = 0, cnt;
+int n, a[100], isFinal = 0, cnt;
 void init() {
     a[1] = n;
     cnt = 1;
@@ -29,7 +29,7 @@ void sinh() {
     }
 }
 int main() {
-    cin >> k >> n;
+    cin >> n;
     init();
     while(!isFinal) {
         for(int i = 1; i <= cnt; i++) {
