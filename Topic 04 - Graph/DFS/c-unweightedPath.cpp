@@ -28,7 +28,6 @@ void dfs(int k) {
 }
 void unweightedPath(int s, int t) {
     memset(visited, false, sizeof(visited));
-    dfs(s);
     vector<int> upath;
     while(t != s) {
         upath.push_back(t);

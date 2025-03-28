@@ -10,19 +10,17 @@ void hierholzer(int u) {
     while(!st.empty()) {
         int top = st.top();
         if(arr[top].size() != 0) {
-            int start = *arr[top].begin();
-            st.push(start);
-            arr[start].erase(top);
-            arr[top].erase(start);
+            int begin = *arr[top].begin();
+            arr[top].erase(begin);
+            arr[begin].erase(top);
+            st.push(begin);
         } else {
             st.pop();
             ec.push_back(top);
         }
     }
     reverse(ec.begin(), ec.end());
-    for(int x : ec){
-        cout << x << " ";
-    }
+    for(int x : ec) cout << x << " ";
 }
 int main() {
     #ifndef ONLINE_JUDGE
@@ -31,6 +29,7 @@ int main() {
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
     #endif
+    cin >> n >> m >> s;
     for(int i = 1; i <= m; i++) {
         int x, y; cin >> x >> y;
         arr[x].insert(y);

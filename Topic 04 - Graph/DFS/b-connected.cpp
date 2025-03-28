@@ -15,7 +15,7 @@ int connectedGraph() {
     for(int i = 1; i <= n; i++) {
         if(!visited[i]) {
             cnt++;
-            cout << "Cac dinh lien thong thu " << cnt << ": ";
+            cout << "Thanh phan lien thong thu " << cnt << ": ";
             dfs(i);
             cout << endl;
         }

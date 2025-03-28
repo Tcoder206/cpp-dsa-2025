@@ -17,21 +17,18 @@ bool visited[100];
 int parent[100];
 vector<vector<int>> arr;
 bool bfs(int k) {
-    memset(visited, false, sizeof(visited));
-    queue<int> temp;
-    temp.push(k);
     visited[k] = true;
-    while(!temp.empty()) {
-        int top = temp.front();
-        temp.pop();
+    queue<int> q;
+    q.push(k);
+    while(!q.empty()){
+        int top = q.front(); q.pop();
+        cout << top << " ";
         for(int u : arr[top]) {
             if(!visited[u]) {
                 visited[u] = true;
+                q.push(u);
                 parent[u] = top;
-                temp.push(u);
-            } else if(u != parent[top]) {
-                return true;
-            }
+            } else if(u != parent[top]) return true;
         }
     }
     return false;

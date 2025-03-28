@@ -9,26 +9,25 @@ struct canh{
     int u, v, w;
 };
 void prim(int u) {
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int,int>>> pq;
     vector<canh> mst;
     int res = 0;
     pq.push({0, u});
     while(!pq.empty()) {
-        pair<int, int> top = pq.top();
-        pq.pop();
+        pair<int, int> top = pq.top(); pq.pop();
         int currV = top.second, currW = top.first;
         if(used[currV]) continue;
-        res += currW;
         used[currV] = true;
+        res += currW;
         if(u != currV) {
-            mst.push_back({ currV, parent[currV], currW });
+            mst.push_back({currV, parent[currV], currW});
         }
         for(auto it : arr[currV]) {
             int nextV = it.first, nextW = it.second;
-            if(!used[nextV] && nextW < d[nextV]) {
-                pq.push({ nextW, nextV });
+            if(!used[nextV] && d[nextV] > nextW) {
                 d[nextV] = nextW;
                 parent[nextV] = currV;
+                pq.push({d[nextV], nextV});
             }
         }
     }
@@ -45,7 +44,7 @@ int main() {
     memset(used, false, sizeof(used));
     cin >> n >> m >> s;
     for(int i = 1; i <= n; i++) d[i] = INT_MAX;
-    for(int i = 1; i <= m; i++){
+    for(int i = 1; i <= m; i++) {
         int x, y, z; cin >> x >> y >> z;
         arr[x].push_back({y, z});
         arr[y].push_back({x, z});

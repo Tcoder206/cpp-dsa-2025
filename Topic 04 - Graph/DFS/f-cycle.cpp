@@ -11,16 +11,19 @@
 using namespace std;
 bool visited[100];
 vector<vector<int>> arr;
-bool dfs(int u, int parent) {
+vector<int> parent;
+bool dfs(int u) {
     visited[u] = true;
     cout << u << " ";
-    for(int k : arr[u]) {
-        if(!visited[k]) {
-            if(dfs(k, u)) return true;
-        } else if(k != parent) return true;
+    for(int v : arr[u]) {
+        if(!visited[v]) {
+            parent[v] = u;
+            if(dfs(v)) return true;
+        } else if(v != parent[u]) return true;
     }
     return false;
 }
+
 int main() {
     int n, m; cin >> n >> m;
     arr.resize(n + 1);
@@ -29,6 +32,6 @@ int main() {
         arr[x].push_back(y);
         arr[y].push_back(x);
     }
-    cout << boolalpha << dfs(1, 0) << endl;
+    cout << boolalpha << dfs(1) << endl;
     return 0;
 }
