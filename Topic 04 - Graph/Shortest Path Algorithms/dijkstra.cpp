@@ -19,6 +19,7 @@ void dijkstra(int u) {
             }
         }
     }
+    for(int i = 1; i <= n; i++) cout << L[i] << " ";
 }
 int main() {
     #ifndef ONLINE_JUDGE
@@ -31,6 +32,7 @@ int main() {
     for(int i = 1; i <= m; i++) {
         int x, y, z; cin >> x >> y >> z;
         arr[x].push_back({y, z});
+        arr[y].push_back({x, z});
     }
     dijkstra(s);
     return 0;
