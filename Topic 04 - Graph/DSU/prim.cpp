@@ -5,36 +5,32 @@ int n, m, s;
 vector<pair<int, int>> arr[maxn];
 bool used[maxn];
 int parent[maxn], d[maxn];
-struct canh{
+struct canh {
     int u, v, w;
 };
 void prim(int u) {
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int,int>>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, u});
     vector<canh> mst;
     int res = 0;
-    pq.push({0, u});
     while(!pq.empty()) {
-        pair<int, int> top = pq.top(); pq.pop();
+        pair<int, int> top = pq.top();
         int currV = top.second, currW = top.first;
         if(used[currV]) continue;
         used[currV] = true;
         res += currW;
-        if(u != currV) {
-            mst.push_back({currV, parent[currV], currW});
-        }
+        if(u != currV) mst.push_back({ parent[currV], currV, currW });
         for(auto it : arr[currV]) {
             int nextV = it.first, nextW = it.second;
             if(!used[nextV] && d[nextV] > nextW) {
                 d[nextV] = nextW;
                 parent[nextV] = currV;
-                pq.push({d[nextV], nextV});
+                pq.push({ d[nextV], nextV });
             }
         }
     }
     cout << res << endl;
-    for(auto it : mst) {
-        cout << it.u << " " << it.v << " " << it.w << endl;
-    }
+    for(auto it : mst) cout << it.u << " " << it.v << " " << it.w << endl;;
 }
 int main() {
     ios_base::sync_with_stdio(false);

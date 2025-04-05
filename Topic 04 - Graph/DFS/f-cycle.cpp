@@ -13,8 +13,8 @@ bool visited[100];
 vector<vector<int>> arr;
 vector<int> parent;
 bool dfs(int u) {
-    visited[u] = true;
     cout << u << " ";
+    visited[u] = true;
     for(int v : arr[u]) {
         if(!visited[v]) {
             parent[v] = u;

@@ -23,10 +23,10 @@ int main() {
     #endif
     cin >> n >> m >> xA >> yA;
     for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= m; j++) cin >> a[i][j];
+        for(int j = 1; j <= m; i++) cin >> a[i][j];
     }
     for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= m; j++) {
+        for(int j = 1; j <= m; i++){
             if(a[i][j] == 'A') {
                 xA = i, yA = j;
             }

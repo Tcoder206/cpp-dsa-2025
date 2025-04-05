@@ -11,8 +11,8 @@ void hierholzer(int u) {
         int top = st.top();
         if(arr[top].size() != 0) {
             int begin = *arr[top].begin();
-            arr[top].erase(begin);
             arr[begin].erase(top);
+            arr[top].erase(begin);
             st.push(begin);
         } else {
             st.pop();
@@ -20,7 +20,7 @@ void hierholzer(int u) {
         }
     }
     reverse(ec.begin(), ec.end());
-    for(int x : ec) cout << x << " ";
+    for(int u : ec) cout << u << " ";
 }
 int main() {
     #ifndef ONLINE_JUDGE
