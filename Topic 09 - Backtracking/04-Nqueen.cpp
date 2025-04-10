@@ -8,11 +8,11 @@ void result() {
     cout << endl;
 }
 void Try(int i) {
-    for(int j = 1; j <= n; j++) {
+    for(int j = 1; j <= n; i++) {
         if(!col[j] && !right_diag[i - j + n] && !reverse_diag[i + j - 1]) {
             col[j] = right_diag[i - j + n] = reverse_diag[i + j - 1] = 1;
             a[i] = j;
-            if(i == n) {
+            if(j == n) {
                 result();
             } else {
                 Try(i + 1);

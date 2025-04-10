@@ -9,7 +9,7 @@ void result() {
 }
 void Try(int x) {
     for(int i = 1; i <= n; i++) {
-        if(used[i] == 0) {
+        if(!used[i]) {
             used[i] = 1;
             a[x] = i;
             if(x == n) {
