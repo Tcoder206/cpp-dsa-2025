@@ -1,22 +1,15 @@
-// 000
-// 001
 #include<bits/stdc++.h>
 using namespace std;
-int n, a[100], isFinal = 0;
-void init() {
-    for(int i = 1; i <= n; i++){
-        a[i] = 0;
-    }
-}
+int n, a[21], isFinal, ans, x[10001];
 void sinh() {
     int i = n;
-    while(i > 0 && a[i] == 1) {
-        a[i--] = 0;
+    while(i > 0 && x[i]) {
+        x[i--] = 0;
     }
     if(i == 0) {
         isFinal = 1;
     } else {
-        a[i] = 1;
+        x[i] = 1;
     }
 }
 int main() {
@@ -27,13 +20,17 @@ int main() {
     freopen("TEST.OUT", "w", stdout);
     #endif
     cin >> n;
-    init();
+    for(int i = 1; i <= n; i++) cin >> a[i];
+    int ans = INT_MAX;
     while(!isFinal) {
+        int sum0 = 0, sum1 = 0;
         for(int i = 1; i <= n; i++) {
-            cout << a[i] << "";
+            if(x[i]) sum1 += a[i];
+            else sum0 += a[i];
         }
-        cout << "\n";
+        ans = min(ans, abs(sum0 - sum1));
         sinh();
     }
+    cout << ans << endl;
     return 0;
 }

@@ -1,13 +1,6 @@
-// 000
-// 001
 #include<bits/stdc++.h>
 using namespace std;
-int n, a[100], isFinal = 0;
-void init() {
-    for(int i = 1; i <= n; i++){
-        a[i] = 0;
-    }
-}
+int n, a[31], isFinal;
 void sinh() {
     int i = n;
     while(i > 0 && a[i] == 1) {
@@ -26,14 +19,19 @@ int main() {
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
     #endif
-    cin >> n;
-    init();
-    while(!isFinal) {
-        for(int i = 1; i <= n; i++) {
-            cout << a[i] << "";
+    int k; cin >> k;
+    vector<string> v;
+    for(n = 1; n <= k/2; n++) {
+        isFinal = 0;
+        while(!isFinal) {
+            string s = "";
+            for(int i = 1; i <= n; i++) s += to_string(a[i]);
+            for(int i = n; i >= 1; i--) s += to_string(a[i]);
+            v.push_back(s);
+            sinh();
         }
-        cout << "\n";
-        sinh();
     }
+    sort(v.begin(), v.end());
+    for(string x : v) cout << x << endl;
     return 0;
 }
