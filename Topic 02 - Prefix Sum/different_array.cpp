@@ -10,6 +10,18 @@ int main() {
     cin.tie(nullptr);
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
-    // Code
+    int n; cin >> n;
+    int pf[n + 1] = {0}, a[n + 1] = {0};
+    for(int i = 1; i <= n; i++) {
+        cin >> a[i];
+        pf[i] = a[i] - a[i - 1];
+    }
+    int l, r, k; cin >> l >> r >> k;
+    pf[l] += k;
+    pf[r + 1] -= k;
+    for(int i = 1; i <= n; i++) {
+        pf[i] += pf[i - 1];
+        cout << pf[i] << " ";
+    }
     return 0;
 }

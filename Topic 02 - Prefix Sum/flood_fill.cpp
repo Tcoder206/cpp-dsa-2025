@@ -23,17 +23,17 @@ int main() {
     int cnt = 0;
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
-            bool isValid = true;
+            bool check = true;
             for(int k = 0; k < 8; k++) {
                 int di = dx[k] + i, dj = dy[k] + j;
                 if(di >= 0 && di < n && dj >= 0 && dj < m) {
-                    if(a[di][dj] >= a[i][j]) {
-                        isValid = false;
+                    if(a[i][j] <= a[di][dj]) {
+                        check = false;
                         break;
                     }
                 }
             }
-            if(isValid) cnt++;
+            if(check) cnt++;
         }
     }
     cout << cnt << endl;

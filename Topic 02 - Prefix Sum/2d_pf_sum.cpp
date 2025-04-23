@@ -6,15 +6,12 @@ int main() {
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
     int n, m; cin >> n >> m;
-    int a[n][m];
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < m; j++) cin >> a[i][j];
-    }
-    int pf[n + 1][m + 1];
+    int a[n][m], pf[n + 1][m + 1];
     memset(pf, 0, sizeof(pf));
     for(int i = 1; i <= n; i++) {
         for(int j = 1; j <= m; j++) {
-            pf[i][j] = pf[i - 1][j] + pf[i][j - 1] + a[i - 1][j - 1] - pf[i - 1][j - 1];
+            cin >> a[i - 1][j - 1];
+            pf[i][j] = pf[i - 1][j] + pf[i][j - 1] - pf[i - 1][j - 1] + a[i - 1][j - 1];
         }
     }
     int c1, c2, h1, h2;
