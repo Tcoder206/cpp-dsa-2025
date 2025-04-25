@@ -6,16 +6,15 @@ int main() {
     cin.tie(nullptr);
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
-    int n, x; cin >> n >> x;
-    int c[n];
-    vector<int> dp(x + 1, imax);
+    int n, s; cin >> n >> s;
+    int c[n], dp[s + 1] = { imax };
     dp[0] = 0;
-    for(int i = 0; i < n; i++) cin >> c[i];
-    for(int i = 0; i < n; i++) {
-        for(int j = c[i]; j <= x; j++) {
-            dp[j] = min(dp[j], dp[j - c[i]] + 1);
+    for(int i = 0; i < n; i++ ) cin >> c[i];
+    for(int i = 1; i <= n; i++) {
+        for(int j = c[i]; j <= s; j++) {
+            dp[j] = max(dp[j], dp[j - c[i]] + 1);
         }
     }
-    cout << (dp[x] == imax ? -1 : dp[x]) << endl;
+    cout << (dp[s] == imax ? -1 : dp[s]) << endl;
     return 0;
 }

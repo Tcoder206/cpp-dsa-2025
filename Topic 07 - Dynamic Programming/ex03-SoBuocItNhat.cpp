@@ -1,3 +1,7 @@
+/*
+13
+143 340 571 845 211 228 274 443 666 594 491 814 24
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int main() {
@@ -5,20 +9,19 @@ int main() {
     cin.tie(nullptr);
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
-    int n; cin >> n;
-    int a[n], dp[n], res = 1;
+    int n, res = 0;
+    cin >> n;
+    int a[n], dp[n];
     for(int i = 0; i < n; i++) {
         cin >> a[i];
         dp[i] = 1;
     }
-    for(int i = 0; i < n - 1; i++) {
-        for(int j = i + 1; j < n; j++) {
-            if(a[i] < a[j]) {
-                dp[j] = max(dp[j], dp[i] + 1);
-            }
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < i; j++) {
+            if(a[j] < a[i]) dp[i] = max(dp[i], dp[j] + 1);
         }
+        res = max(res, dp[i]);
     }
-    for(int i = 0; i < n; i++) res = max(res, dp[i]);
     cout << n - res << endl;
     return 0;
 }
