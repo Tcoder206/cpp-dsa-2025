@@ -5,8 +5,8 @@ vector<vector<pair<int, int>>> arr;
 int parent[1001];
 void dijkstra(int a, int b) {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    vector<int> L(n + 1, INT_MAX), path;
     pq.push({0, a});
-    vector<int> L(n + 1, INT_MAX);
     L[a] = 0;
     while(!pq.empty()) {
         pair<int, int> top = pq.top(); pq.pop();
@@ -17,17 +17,17 @@ void dijkstra(int a, int b) {
             if(L[nextV] > L[currV] + nextW) {
                 L[nextV] = L[currV] + nextW;
                 parent[nextV] = currV;
-                pq.push({ L[nextV], nextV });
+                pq.push({L[nextV], nextV});
             }
         }
     }
-    vector<int> upath;
-    upath.push_back(b);
     while(b != a) {
+        path.push_back(b);
         b = parent[b];
-        upath.push_back(b);
     }
-    reverse(upath.begin(), upath.end());
+    path.push_back(a);
+    reverse(path.begin(), path.end());
+    for(int x : path) cout << x << " ";
 }
 int main() {
     #ifndef ONLINE_JUDGE

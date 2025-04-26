@@ -1,26 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, m, s;
-set<int> arr[100001];
-int deg[100001];
+set<int> a[10001];
+int deg[10001];
 void hierholzer(int u) {
     stack<int> st;
     vector<int> ec;
     st.push(u);
     while(!st.empty()) {
         int top = st.top();
-        if(arr[top].size() != 0) {
-            int begin = *arr[top].begin();
-            arr[begin].erase(top);
-            arr[top].erase(begin);
+        if(a[top].size() != 0) {
+            int begin = *a[top].begin();
+            a[top].erase(begin);
+            a[begin].erase(top);
             st.push(begin);
         } else {
             st.pop();
-            ec.push_back(top);
+            ec.push(top);
         }
     }
     reverse(ec.begin(), ec.end());
-    for(int u : ec) cout << u << " ";
+    for(int i : ec) cout << i << " ";
 }
 int main() {
     #ifndef ONLINE_JUDGE
@@ -32,8 +32,8 @@ int main() {
     cin >> n >> m >> s;
     for(int i = 1; i <= m; i++) {
         int x, y; cin >> x >> y;
-        arr[x].insert(y);
-        arr[y].insert(x);
+        a[x].insert(y);
+        a[y].insert(x);
         deg[x]++;
         deg[y]++;
     }

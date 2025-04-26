@@ -9,12 +9,15 @@
 4 5 3
 4 6 10
 5 6 8
- */
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int n, m, parent[10001], sz[10001];
-void make_set() {
-    for(int i = 1; i <= n; i++) {
+struct edge{
+    int u, v, w;
+};
+void make_pair() {
+    for(int i = 0; i < n; i++) {
         parent[i] = i;
         sz[i] = 1;
     }
@@ -31,15 +34,11 @@ bool dsu(int a, int b) {
     sz[a] += sz[b];
     return true;
 }
-struct edge{
-    int u, v;
-    int w;
-};
 bool cmp(edge a, edge b) {
     return a.w < b.w;
 }
 vector<edge> canh;
-void krusal() {
+void kruskal() {
     vector<edge> mst;
     int d = 0;
     sort(canh.begin(), canh.end(), cmp);
@@ -53,11 +52,11 @@ void krusal() {
         }
     }
     if(mst.size() != n - 1) {
-        cout << "Do thi ko co mst" << endl;
+        cout << "Ko co MST" << endl;
     } else {
         cout << "MST: " << d << endl;
-        for(auto k : mst) {
-            cout << k.u << " " << k.v << " " << k.w << endl;
+        for(auto e : mst) {
+            cout << e.u << " " << e.v << " " << e.w << endl;
         }
     }
 }
@@ -68,11 +67,12 @@ int main() {
     freopen("TEST.OUT", "w", stdout);
     cin >> n >> m;
     for(int i = 0; i < m; i++) {
-        int x, y, z ; cin >> x >> y >> z;
+        int x, y, z;
+        cin >> x >> y >> z;
         edge e = edge{x, y, z};
         canh.push_back(e);
     }
-    make_set();
-    krusal();
+    make_pair();
+    kruskal();
     return 0;
 }
