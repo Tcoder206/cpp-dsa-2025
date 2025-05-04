@@ -1,17 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, a[21], l[21];
-void ql(int u, int bd) {
-    for(int i = bd; i <= n; i++) {
-        if(a[i] > l[u - 1]) {
-            l[u] = a[i];
-            if(u >= 2) {
-                for(int j = 1; j <= u; j++) {
-                    cout << l[j] << " ";
+void ql(int i, int bd) {
+    for(int j = bd; j <= n; j++) {
+        if(l[i - 1] < a[j]) {
+            l[i] = a[j];
+            if(i >= 2) {
+                for(int k = 1; k <= i; k++) {
+                    cout << l[k] << (k == i ? "" : " ");
                 }
                 cout << endl;
             }
-            ql(u + 1, i + 1);
+            ql(i + 1, j + 1);
         }
     }
 }

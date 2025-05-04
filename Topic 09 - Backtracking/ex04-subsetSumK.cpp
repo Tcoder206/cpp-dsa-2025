@@ -1,17 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, k, a[16], x[16];
-void ql(int t, int s, int sum) {
-    for(int i = s; i <= n; i++) {
-        x[t] = a[i];
-        if(sum + x[t] == k){
-            cout << "[";
-            for(int l = 1; l <= t; l++) {
-                cout << x[l];
-                if(l < t) cout << " ";
+void ql(int i, int bd, int sum) {
+    for(int j = bd; j <= n; j++) {
+        x[i] = a[j];
+        if(sum + x[i] == k) {
+            for(int t = 1; t <= i; t++) {
+                cout << x[t];
+                if(t < i) cout << " ";
             }
-            cout << "]\n";
-        } else if(sum + x[t] < k) ql(t + 1, i + 1, sum + x[t]);
+            cout << endl;
+        } else if(sum + x[i] < k) {
+            ql(i + 1, j + 1, sum + x[i]);
+        }
     }
 }
 int main() {

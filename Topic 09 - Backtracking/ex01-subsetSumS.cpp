@@ -1,16 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
-int n, k, s, a[21], sum, cnt;
-void ql(int t) {
-    for(int i = a[t - 1] + 1; i <= n - k + t; i++) {
-        a[t] = i;
-        sum += a[t];
-        if(t == k && sum == s) {
+int n, k, s, a[21], cnt;
+void ql(int i, int bd, int sum) {
+    for(int j = bd; j <= n; j++) {
+        a[i] = j;
+        if(i == k && sum + a[i] == s) {
             cnt++;
-        } else if(t < k) {
-            ql(t + 1);
+        } else if(i < k) {
+            ql(i + 1, j + 1, sum + a[i]);
         }
-        sum -= a[t];
     }
 }
 int main() {
@@ -21,7 +19,7 @@ int main() {
     freopen("TEST.OUT", "w", stdout);
     #endif
     cin >> n >> k >> s;
-    ql(1);
+    ql(1, 1, 0);
     cout << cnt << endl;
     return 0;
 }

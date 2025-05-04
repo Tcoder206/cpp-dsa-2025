@@ -3,10 +3,10 @@ using namespace std;
 int n, s, a[21], b[21], ok;
 void ql(int u, int bd, int sum) {
     if(ok) return;
-    for(int i = bd; i <= n; i++) {
-        b[u] = a[i];
-        if(sum + b[u] == s) ok = 1;
-        else ql(u + 1, i + 1, sum + b[u]);
+    for(int j = bd; j <= n; j++) {
+        b[u] = a[j];
+        if(b[u] + sum == s) ok = 1;
+        else ql(u + 1, j + 1, sum + b[u]);
     }
 }
 int main() {
@@ -22,11 +22,11 @@ int main() {
         s += a[i];
     }
     if(s % 2 == 1) {
-        cout << 0 << endl;
-        return 0;
+        ok = 0;
+    } else {
+        s /= 2;
+        ql(1, 1, 0);
     }
-    s /= 2;
-    ql(1, 1, 0);
-    cout << (ok ? 1 : 0) << endl;
+    cout << ok << endl;
     return 0;
 }
