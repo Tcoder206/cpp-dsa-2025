@@ -9,23 +9,21 @@ int main() {
     freopen("TEST.OUT", "w", stdout);
     #endif
     int n; cin >> n;
-    int s = 0;
-    vector<int> a(n + 1);
-    for(int i = 1; i <= n; i++) {
+    int a[n], s = 0;
+    for(int i = 0; i < n; i++) {
         cin >> a[i];
         s += a[i];
     }
-    int dp[s + 1];
+    int dp[s + 1] = {0};
     dp[0] = 1;
     for(int i = 1; i <= n; i++) {
         for(int j = s; j >= 1; j--) {
-            if(j >= a[i]) {
-                dp[j] |= dp[j - a[i]];
-            }
+            if(a[i - 1] <= j)
+                dp[j] = dp[j] || dp[j - a[i - 1]];
         }
     }
     for(int i = 0; i <= s; i++) {
-        if(dp[i]) cout << i << " ";
+        if(dp[i] == 1) cout << i << " ";
     }
     return 0;
 }

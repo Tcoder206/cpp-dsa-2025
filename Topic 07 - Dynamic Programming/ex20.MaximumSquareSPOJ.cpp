@@ -8,15 +8,15 @@ int main() {
     freopen("TEST.INP", "r", stdin);
     freopen("TEST.OUT", "w", stdout);
     #endif
-    int n; cin >> n;
-    int dp[n + 1];
-    memset(dp, 0, sizeof(dp));
-    dp[0] = 1;
+    int n, m; cin >> n >> m;
+    int a[n + 1][m + 1], dp[n + 1][m + 1] = {0};
     for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= 6; j++) {
-            if(i >= j) dp[i] += dp[i - j];
+        for(int j = 1; j <= n; j++) cin >> c[i][j];
+    }
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= n; j++){
         }
     }
-    cout << dp[n] << endl;
+    cout << dp[n][n] << endl;
     return 0;
 }
