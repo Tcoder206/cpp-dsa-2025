@@ -1,14 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-int n, k, s, a[21], cnt;
+int n, k, s, a[21], cnt = 0;
 void ql(int i, int bd, int sum) {
     for(int j = bd; j <= n; j++) {
         a[i] = j;
-        if(i == k && sum + a[i] == s) {
-            cnt++;
-        } else if(i < k) {
-            ql(i + 1, j + 1, sum + a[i]);
-        }
+        if(i == k && a[i] + sum == s) cnt++;
+        else if(i < k) ql(i + 1, j + 1, sum + a[i]);
     }
 }
 int main() {

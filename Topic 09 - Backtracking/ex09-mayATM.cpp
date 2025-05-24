@@ -1,14 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-int n, s, t[31], a[31], ans = INT_MAX;
+int n, s, t[31], r[31], ans = INT_MAX;
 void ql(int i, int bd, int sum) {
-    for(int j = bd; j < n; j++) {
-        a[i] = t[j];
-        if(sum + a[i] == s) {
-            ans = min(ans, i);
-        } else if(sum + a[i] < s) {
-            ql(i + 1, j + 1, sum + a[i]);
-        }
+    for(int j = bd; j <= n; j++) {
+        r[i] = t[j];
+        if(sum + t[j] == s) ans = min(ans, i);
+        else if(sum + t[j] < s) ql(i + 1, j + 1, t[j] + sum);
     }
 }
 int main() {

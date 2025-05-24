@@ -1,18 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n, b[10], used[10];
-void ql(int u) {
-    for(int i = 1; i <= n; i++) {
-        if(!used[i] && abs(i - b[u - 1]) != 1) {
-            used[i] = 1;
-            b[u] = i;
-            if(u == n) {
-                for(int j = 1; j <= u; j++) {
-                    cout << b[j] << " ";
-                }
+void ql(int i) {
+    for(int j = 1; j <= n; j++) {
+        if(!used[j] && abs(j - b[i - 1]) != 1) {
+            used[j] = 1;
+            b[i] = j;
+            if(i == n) {
+                for(int k = 1; k <= n; k++) cout << b[k];
                 cout << endl;
-            } else ql(u + 1);
-            used[i] = 0;
+            } else if(i < n) ql(i + 1);
+            used[j] = 0;
         }
     }
 }

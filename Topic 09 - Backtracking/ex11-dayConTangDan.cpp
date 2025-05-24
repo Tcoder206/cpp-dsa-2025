@@ -3,12 +3,10 @@ using namespace std;
 int n, a[21], l[21];
 void ql(int i, int bd) {
     for(int j = bd; j <= n; j++) {
-        if(l[i - 1] < a[j]) {
+        if(a[j] > l[i - 1]) {
             l[i] = a[j];
             if(i >= 2) {
-                for(int k = 1; k <= i; k++) {
-                    cout << l[k] << (k == i ? "" : " ");
-                }
+                for(int k = 1; k <= i; k++) cout << l[k] << (k < i ? " " : "");
                 cout << endl;
             }
             ql(i + 1, j + 1);
